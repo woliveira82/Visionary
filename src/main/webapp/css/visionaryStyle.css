@@ -1,0 +1,158 @@
+body{
+    font: 62.5% "Trebuchet MS", sans-serif;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+header{
+    padding-bottom: 1em;
+    width: 100%;
+}
+main{
+    float: right;
+}
+aside{
+    float: left;
+}
+/*---------- jQuery widget CSS -----------------------------------------------*/
+.demoHeaders {
+    margin-top: 2em;
+}
+#dialog-link {
+    padding: .4em 1em .4em 20px;
+    text-decoration: none;
+    position: relative;
+}
+#dialog-link span.ui-icon {
+    margin: 0 5px 0 0;
+    position: absolute;
+    left: .2em;
+    top: 50%;
+    margin-top: -8px;
+}
+#icons {
+    margin: 0;
+    padding: 0;
+}
+#icons li {
+    margin: 2px;
+    position: relative;
+    padding: 4px 0;
+    cursor: pointer;
+    float: left;
+    list-style: none;
+}
+#icons span.ui-icon {
+    float: left;
+    margin: 0 4px;
+}
+.fakewindowcontain .ui-widget-overlay {
+    position: absolute;
+}
+select {
+    width: 200px;
+}
+/*---------- Auto-complete select --------------------------------------------*/
+.custom-combobox {
+    position: relative;
+    display: inline-block;
+}
+.custom-combobox-toggle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin-left: -1px;
+    padding: 0;
+}
+.custom-combobox-input {
+    margin: 0;
+    padding: 5px 10px;
+}
+/* ---------- VISUALIZATION DIVS -------------------------------------------- */
+#flowVis, #chartVis, #graphVis{
+    padding-top: 10px;
+}
+/*----------------------------------------------------------------------------*/
+.filters{
+    text-align: center;
+    border: 1px solid #cccccc;
+    padding: 0.5em;
+    background-color: #eeeeee;
+    margin: 0.5em;
+    border-radius: 4px;
+}
+.filterTitle{
+    font: 1em initial;
+    margin-bottom: 0.5em
+}
+#entityNameLabel{
+    vertical-align: middle;
+}
+#agentFilter{
+    vertical-align: middle;
+}
+#entityFilter{
+    vertical-align: middle;
+}
+.codeLike{
+    color: #666;
+    font-weight: bold;
+    font-size: large;
+    font-family: monospace;
+}
+#graph{
+    border: 1px solid #cccccc;
+    height: 500px;
+    width: 960px;
+    float: left;
+}
+#filterTable{
+    text-align: left;
+}
+/* ---------- GRAPH ELEMENTS DEFINITIONS */
+line.asserted {
+    fill: none;
+    stroke: #000;
+    stroke-opacity: .8;
+}
+line.inferred {
+    fill: none;
+    stroke: #f00;
+    stroke-opacity: .8;
+}
+line.both {
+    fill: none;
+    stroke: #aa0;
+    stroke-opacity: .8;
+}
+text {
+    font: sans-serif;
+    pointer-events: none;
+    text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff;
+}
+/* ---------- TIP BOX DEFINITIONS */
+#nodeTip, #pathTip{
+    position: absolute;
+    border: 1px solid #cccccc;
+    padding: 0.8em;
+    text-align: center;
+    background-color: #eeeeee;
+    border-radius: 2px;
+    pointer-events: none;
+}
+table.tableTip{
+    border-collapse: collapse;
+    width: 100%;
+}
+.tableTip th, .tableTip td {
+    padding: 8px;
+}
+.tableTip td.inftrue{
+    color: red;
+}
+.tableTip th {
+    background-color: #444;
+    color: white;
+}
+.tableTip tr:nth-child(even){
+    background-color: #f2f2f2
+}

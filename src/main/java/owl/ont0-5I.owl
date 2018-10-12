@@ -1,0 +1,1300 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY prov "http://www.w3.org/ns/prov#" >
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.semanticweb.org/041784/ontologies/2015/11/untitled-ontology-77#"
+     xml:base="http://www.semanticweb.org/041784/ontologies/2015/11/untitled-ontology-77"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:prov="http://www.w3.org/ns/prov#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/041784/ontologies/2015/11/untitled-ontology-77"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.w3.org/ns/prov#definition -->
+
+    <owl:AnnotationProperty rdf:about="&prov;definition"/>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#dm -->
+
+    <owl:AnnotationProperty rdf:about="&prov;dm"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.w3.org/ns/prov#actedOnBehalfOf -->
+
+    <owl:ObjectProperty rdf:about="&prov;actedOnBehalfOf">
+        <rdfs:range rdf:resource="&prov;Agent"/>
+        <rdfs:domain rdf:resource="&prov;Agent"/>
+        <rdfs:subPropertyOf rdf:resource="&prov;wasInfluencedBy"/>
+        <rdfs:subPropertyOf>
+            <rdf:Description>
+                <owl:inverseOf rdf:resource="&prov;influenced"/>
+            </rdf:Description>
+        </rdfs:subPropertyOf>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="&prov;qualifiedDelegation"/>
+            <rdf:Description rdf:about="&prov;agent"/>
+        </owl:propertyChainAxiom>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#activity -->
+
+    <owl:ObjectProperty rdf:about="&prov;activity">
+        <rdfs:range rdf:resource="&prov;Activity"/>
+        <rdfs:domain rdf:resource="&prov;ActivityInfluence"/>
+        <rdfs:subPropertyOf rdf:resource="&prov;influencer"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#agent -->
+
+    <owl:ObjectProperty rdf:about="&prov;agent">
+        <rdfs:range rdf:resource="&prov;Agent"/>
+        <rdfs:domain rdf:resource="&prov;AgentInfluence"/>
+        <rdfs:subPropertyOf rdf:resource="&prov;influencer"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#alternateOf -->
+
+    <owl:ObjectProperty rdf:about="&prov;alternateOf">
+        <rdfs:range rdf:resource="&prov;Entity"/>
+        <rdfs:domain rdf:resource="&prov;Entity"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#atLocation -->
+
+    <owl:ObjectProperty rdf:about="&prov;atLocation">
+        <rdfs:range rdf:resource="&prov;Location"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&prov;Activity"/>
+                    <rdf:Description rdf:about="&prov;Agent"/>
+                    <rdf:Description rdf:about="&prov;Entity"/>
+                    <rdf:Description rdf:about="&prov;InstantaneousEvent"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#entity -->
+
+    <owl:ObjectProperty rdf:about="&prov;entity">
+        <rdfs:range rdf:resource="&prov;Entity"/>
+        <rdfs:domain rdf:resource="&prov;EntityInfluence"/>
+        <rdfs:subPropertyOf rdf:resource="&prov;influencer"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#generated -->
+
+    <owl:ObjectProperty rdf:about="&prov;generated">
+        <rdf:type rdf:resource="&owl;AsymmetricProperty"/>
+        <rdf:type rdf:resource="&owl;IrreflexiveProperty"/>
+        <rdfs:domain rdf:resource="&prov;Activity"/>
+        <rdfs:range rdf:resource="&prov;Entity"/>
+        <rdfs:subPropertyOf rdf:resource="&prov;influenced"/>
+        <rdfs:subPropertyOf>
+            <rdf:Description>
+                <owl:inverseOf rdf:resource="&prov;wasInfluencedBy"/>
+            </rdf:Description>
+        </rdfs:subPropertyOf>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#hadActivity -->
+
+    <owl:ObjectProperty rdf:about="&prov;hadActivity">
+        <rdfs:range rdf:resource="&prov;Activity"/>
+        <rdfs:domain rdf:resource="&prov;Influence"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&prov;Delegation"/>
+                    <rdf:Description rdf:about="&prov;Derivation"/>
+                    <rdf:Description rdf:about="&prov;End"/>
+                    <rdf:Description rdf:about="&prov;Start"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#hadGeneration -->
+
+    <owl:ObjectProperty rdf:about="&prov;hadGeneration">
+        <rdf:type rdf:resource="&owl;AsymmetricProperty"/>
+        <rdf:type rdf:resource="&owl;IrreflexiveProperty"/>
+        <rdfs:domain rdf:resource="&prov;Derivation"/>
+        <rdfs:range rdf:resource="&prov;Generation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#hadMember -->
+
+    <owl:ObjectProperty rdf:about="&prov;hadMember">
+        <rdfs:domain rdf:resource="&prov;Collection"/>
+        <rdfs:range rdf:resource="&prov;Entity"/>
+        <rdfs:subPropertyOf rdf:resource="&prov;wasInfluencedBy"/>
+        <rdfs:subPropertyOf>
+            <rdf:Description>
+                <owl:inverseOf rdf:resource="&prov;influenced"/>
+            </rdf:Description>
+        </rdfs:subPropertyOf>
+    </owl:ObjectProperty>
+    <owl:Axiom>
+        <prov:dm>http://www.w3.org/TR/2013/REC-prov-dm-20130430/#term-collection</prov:dm>
+        <rdfs:comment xml:lang="en">A collection is an entity that provides a structure to some constituents, which are themselves entities. These constituents are said to be member of the collections.</rdfs:comment>
+        <owl:annotatedProperty rdf:resource="&rdfs;range"/>
+        <owl:annotatedTarget rdf:resource="&prov;Entity"/>
+        <owl:annotatedSource rdf:resource="&prov;hadMember"/>
+    </owl:Axiom>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#hadPlan -->
+
+    <owl:ObjectProperty rdf:about="&prov;hadPlan">
+        <rdfs:domain rdf:resource="&prov;Association"/>
+        <rdfs:range rdf:resource="&prov;Plan"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#hadPrimarySource -->
+
+    <owl:ObjectProperty rdf:about="&prov;hadPrimarySource">
+        <rdfs:domain rdf:resource="&prov;Entity"/>
+        <rdfs:range rdf:resource="&prov;Entity"/>
+        <rdfs:subPropertyOf rdf:resource="&prov;wasDerivedFrom"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="&prov;qualifiedPrimarySource"/>
+            <rdf:Description rdf:about="&prov;entity"/>
+        </owl:propertyChainAxiom>
+    </owl:ObjectProperty>
+    <owl:Axiom>
+        <rdfs:comment>hadPrimarySource property is a particular case of wasDerivedFrom (see http://www.w3.org/TR/prov-dm/#term-original-source) that aims to give credit to the source that originated some information.</rdfs:comment>
+        <owl:annotatedProperty rdf:resource="&rdfs;subPropertyOf"/>
+        <owl:annotatedSource rdf:resource="&prov;hadPrimarySource"/>
+        <owl:annotatedTarget rdf:resource="&prov;wasDerivedFrom"/>
+    </owl:Axiom>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#hadRole -->
+
+    <owl:ObjectProperty rdf:about="&prov;hadRole">
+        <rdfs:domain rdf:resource="&prov;Influence"/>
+        <rdfs:range rdf:resource="&prov;Role"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&prov;Association"/>
+                    <rdf:Description rdf:about="&prov;InstantaneousEvent"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#hadUsage -->
+
+    <owl:ObjectProperty rdf:about="&prov;hadUsage">
+        <rdfs:domain rdf:resource="&prov;Derivation"/>
+        <rdfs:range rdf:resource="&prov;Usage"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#influenced -->
+
+    <owl:ObjectProperty rdf:about="&prov;influenced">
+        <owl:inverseOf rdf:resource="&prov;wasInfluencedBy"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#influencer -->
+
+    <owl:ObjectProperty rdf:about="&prov;influencer">
+        <rdfs:range rdf:resource="&owl;Thing"/>
+        <rdfs:domain rdf:resource="&prov;Influence"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#invalidated -->
+
+    <owl:ObjectProperty rdf:about="&prov;invalidated">
+        <rdf:type rdf:resource="&owl;AsymmetricProperty"/>
+        <rdf:type rdf:resource="&owl;IrreflexiveProperty"/>
+        <rdfs:domain rdf:resource="&prov;Activity"/>
+        <rdfs:range rdf:resource="&prov;Entity"/>
+        <rdfs:subPropertyOf rdf:resource="&prov;influenced"/>
+        <owl:inverseOf rdf:resource="&prov;wasInvalidatedBy"/>
+        <rdfs:subPropertyOf>
+            <rdf:Description>
+                <owl:inverseOf rdf:resource="&prov;wasInfluencedBy"/>
+            </rdf:Description>
+        </rdfs:subPropertyOf>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#qualifiedAssociation -->
+
+    <owl:ObjectProperty rdf:about="&prov;qualifiedAssociation">
+        <rdfs:domain rdf:resource="&prov;Activity"/>
+        <rdfs:range rdf:resource="&prov;Association"/>
+        <rdfs:subPropertyOf rdf:resource="&prov;qualifiedInfluence"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#qualifiedAttribution -->
+
+    <owl:ObjectProperty rdf:about="&prov;qualifiedAttribution">
+        <rdfs:range rdf:resource="&prov;Attribution"/>
+        <rdfs:domain rdf:resource="&prov;Entity"/>
+        <rdfs:subPropertyOf rdf:resource="&prov;qualifiedInfluence"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#qualifiedCommunication -->
+
+    <owl:ObjectProperty rdf:about="&prov;qualifiedCommunication">
+        <rdfs:domain rdf:resource="&prov;Activity"/>
+        <rdfs:range rdf:resource="&prov;Communication"/>
+        <rdfs:subPropertyOf rdf:resource="&prov;qualifiedInfluence"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#qualifiedDelegation -->
+
+    <owl:ObjectProperty rdf:about="&prov;qualifiedDelegation">
+        <rdfs:domain rdf:resource="&prov;Agent"/>
+        <rdfs:range rdf:resource="&prov;Delegation"/>
+        <rdfs:subPropertyOf rdf:resource="&prov;qualifiedInfluence"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#qualifiedDerivation -->
+
+    <owl:ObjectProperty rdf:about="&prov;qualifiedDerivation">
+        <rdfs:range rdf:resource="&prov;Derivation"/>
+        <rdfs:domain rdf:resource="&prov;Entity"/>
+        <rdfs:subPropertyOf rdf:resource="&prov;qualifiedInfluence"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#qualifiedEnd -->
+
+    <owl:ObjectProperty rdf:about="&prov;qualifiedEnd">
+        <rdfs:domain rdf:resource="&prov;Activity"/>
+        <rdfs:range rdf:resource="&prov;End"/>
+        <rdfs:subPropertyOf rdf:resource="&prov;qualifiedInfluence"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#qualifiedGeneration -->
+
+    <owl:ObjectProperty rdf:about="&prov;qualifiedGeneration">
+        <rdf:type rdf:resource="&owl;AsymmetricProperty"/>
+        <rdf:type rdf:resource="&owl;IrreflexiveProperty"/>
+        <rdfs:domain rdf:resource="&prov;Entity"/>
+        <rdfs:range rdf:resource="&prov;Generation"/>
+        <rdfs:subPropertyOf rdf:resource="&prov;qualifiedInfluence"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#qualifiedInfluence -->
+
+    <owl:ObjectProperty rdf:about="&prov;qualifiedInfluence">
+        <rdfs:range rdf:resource="&prov;Influence"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&prov;Activity"/>
+                    <rdf:Description rdf:about="&prov;Agent"/>
+                    <rdf:Description rdf:about="&prov;Entity"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#qualifiedInvalidation -->
+
+    <owl:ObjectProperty rdf:about="&prov;qualifiedInvalidation">
+        <rdf:type rdf:resource="&owl;AsymmetricProperty"/>
+        <rdf:type rdf:resource="&owl;IrreflexiveProperty"/>
+        <rdfs:domain rdf:resource="&prov;Entity"/>
+        <rdfs:range rdf:resource="&prov;Invalidation"/>
+        <rdfs:subPropertyOf rdf:resource="&prov;qualifiedInfluence"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#qualifiedPrimarySource -->
+
+    <owl:ObjectProperty rdf:about="&prov;qualifiedPrimarySource">
+        <rdfs:domain rdf:resource="&prov;Entity"/>
+        <rdfs:range rdf:resource="&prov;PrimarySource"/>
+        <rdfs:subPropertyOf rdf:resource="&prov;qualifiedInfluence"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#qualifiedQuotation -->
+
+    <owl:ObjectProperty rdf:about="&prov;qualifiedQuotation">
+        <rdfs:domain rdf:resource="&prov;Entity"/>
+        <rdfs:range rdf:resource="&prov;Quotation"/>
+        <rdfs:subPropertyOf rdf:resource="&prov;qualifiedInfluence"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#qualifiedRevision -->
+
+    <owl:ObjectProperty rdf:about="&prov;qualifiedRevision">
+        <rdfs:domain rdf:resource="&prov;Entity"/>
+        <rdfs:range rdf:resource="&prov;Revision"/>
+        <rdfs:subPropertyOf rdf:resource="&prov;qualifiedInfluence"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#qualifiedStart -->
+
+    <owl:ObjectProperty rdf:about="&prov;qualifiedStart">
+        <rdfs:domain rdf:resource="&prov;Activity"/>
+        <rdfs:range rdf:resource="&prov;Start"/>
+        <rdfs:subPropertyOf rdf:resource="&prov;qualifiedInfluence"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#qualifiedUsage -->
+
+    <owl:ObjectProperty rdf:about="&prov;qualifiedUsage">
+        <rdfs:domain rdf:resource="&prov;Activity"/>
+        <rdfs:range rdf:resource="&prov;Usage"/>
+        <rdfs:subPropertyOf rdf:resource="&prov;qualifiedInfluence"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#specializationOf -->
+
+    <owl:ObjectProperty rdf:about="&prov;specializationOf">
+        <rdfs:domain rdf:resource="&prov;Entity"/>
+        <rdfs:range rdf:resource="&prov;Entity"/>
+        <rdfs:subPropertyOf rdf:resource="&prov;alternateOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#used -->
+
+    <owl:ObjectProperty rdf:about="&prov;used">
+        <rdf:type rdf:resource="&owl;AsymmetricProperty"/>
+        <rdf:type rdf:resource="&owl;IrreflexiveProperty"/>
+        <rdfs:domain rdf:resource="&prov;Activity"/>
+        <rdfs:range rdf:resource="&prov;Entity"/>
+        <rdfs:subPropertyOf rdf:resource="&prov;wasInfluencedBy"/>
+        <rdfs:subPropertyOf>
+            <rdf:Description>
+                <owl:inverseOf rdf:resource="&prov;influenced"/>
+            </rdf:Description>
+        </rdfs:subPropertyOf>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="&prov;qualifiedUsage"/>
+            <rdf:Description rdf:about="&prov;entity"/>
+        </owl:propertyChainAxiom>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#wasAssociatedWith -->
+
+    <owl:ObjectProperty rdf:about="&prov;wasAssociatedWith">
+        <rdfs:domain rdf:resource="&prov;Activity"/>
+        <rdfs:range rdf:resource="&prov;Agent"/>
+        <rdfs:subPropertyOf rdf:resource="&prov;wasInfluencedBy"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="&prov;used"/>
+            <rdf:Description rdf:about="&prov;wasAttributedTo"/>
+        </owl:propertyChainAxiom>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="&prov;wasEndedBy"/>
+            <rdf:Description rdf:about="&prov;wasAttributedTo"/>
+        </owl:propertyChainAxiom>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="&prov;wasStartedBy"/>
+            <rdf:Description rdf:about="&prov;wasAttributedTo"/>
+        </owl:propertyChainAxiom>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="&prov;qualifiedAssociation"/>
+            <rdf:Description rdf:about="&prov;agent"/>
+        </owl:propertyChainAxiom>
+        <rdfs:subPropertyOf>
+            <rdf:Description>
+                <owl:inverseOf rdf:resource="&prov;influenced"/>
+            </rdf:Description>
+        </rdfs:subPropertyOf>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#wasAttributedTo -->
+
+    <owl:ObjectProperty rdf:about="&prov;wasAttributedTo">
+        <rdfs:range rdf:resource="&prov;Agent"/>
+        <rdfs:domain rdf:resource="&prov;Entity"/>
+        <rdfs:subPropertyOf rdf:resource="&prov;wasInfluencedBy"/>
+        <rdfs:subPropertyOf>
+            <rdf:Description>
+                <owl:inverseOf rdf:resource="&prov;influenced"/>
+            </rdf:Description>
+        </rdfs:subPropertyOf>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="&prov;qualifiedAttribution"/>
+            <rdf:Description rdf:about="&prov;agent"/>
+        </owl:propertyChainAxiom>
+    </owl:ObjectProperty>
+    <owl:Axiom>
+        <prov:definition>IF wasAttributedTo(e2,ag1,aAttr) holds, THEN wasInfluencedBy(e2,ag1) also holds. </prov:definition>
+        <rdfs:comment>Attribution is a particular case of trace (see http://www.w3.org/TR/prov-dm/#concept-trace), in the sense that it links an entity to the agent that ascribed it.</rdfs:comment>
+        <owl:annotatedProperty rdf:resource="&rdfs;subPropertyOf"/>
+        <owl:annotatedSource rdf:resource="&prov;wasAttributedTo"/>
+        <owl:annotatedTarget rdf:resource="&prov;wasInfluencedBy"/>
+    </owl:Axiom>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#wasDerivedFrom -->
+
+    <owl:ObjectProperty rdf:about="&prov;wasDerivedFrom">
+        <rdfs:range rdf:resource="&prov;Entity"/>
+        <rdfs:domain rdf:resource="&prov;Entity"/>
+        <rdfs:subPropertyOf rdf:resource="&prov;wasInfluencedBy"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="&prov;qualifiedDerivation"/>
+            <rdf:Description rdf:about="&prov;entity"/>
+        </owl:propertyChainAxiom>
+        <rdfs:subPropertyOf>
+            <rdf:Description>
+                <owl:inverseOf rdf:resource="&prov;influenced"/>
+            </rdf:Description>
+        </rdfs:subPropertyOf>
+    </owl:ObjectProperty>
+    <owl:Axiom>
+        <rdfs:comment>Derivation is a particular case of trace (see http://www.w3.org/TR/prov-dm/#term-trace), since it links an entity to another entity that contributed to its existence.</rdfs:comment>
+        <owl:annotatedProperty rdf:resource="&rdfs;subPropertyOf"/>
+        <owl:annotatedSource rdf:resource="&prov;wasDerivedFrom"/>
+        <owl:annotatedTarget rdf:resource="&prov;wasInfluencedBy"/>
+    </owl:Axiom>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#wasEndedBy -->
+
+    <owl:ObjectProperty rdf:about="&prov;wasEndedBy">
+        <rdf:type rdf:resource="&owl;AsymmetricProperty"/>
+        <rdf:type rdf:resource="&owl;IrreflexiveProperty"/>
+        <rdfs:domain rdf:resource="&prov;Activity"/>
+        <rdfs:range rdf:resource="&prov;Entity"/>
+        <rdfs:subPropertyOf rdf:resource="&prov;wasInfluencedBy"/>
+        <rdfs:subPropertyOf>
+            <rdf:Description>
+                <owl:inverseOf rdf:resource="&prov;influenced"/>
+            </rdf:Description>
+        </rdfs:subPropertyOf>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="&prov;qualifiedEnd"/>
+            <rdf:Description rdf:about="&prov;entity"/>
+        </owl:propertyChainAxiom>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#wasGeneratedBy -->
+
+    <owl:ObjectProperty rdf:about="&prov;wasGeneratedBy">
+        <rdf:type rdf:resource="&owl;AsymmetricProperty"/>
+        <rdf:type rdf:resource="&owl;IrreflexiveProperty"/>
+        <rdfs:range rdf:resource="&prov;Activity"/>
+        <rdfs:domain rdf:resource="&prov;Entity"/>
+        <owl:inverseOf rdf:resource="&prov;generated"/>
+        <rdfs:subPropertyOf rdf:resource="&prov;wasInfluencedBy"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="&prov;qualifiedGeneration"/>
+            <rdf:Description rdf:about="&prov;activity"/>
+        </owl:propertyChainAxiom>
+        <rdfs:subPropertyOf>
+            <rdf:Description>
+                <owl:inverseOf rdf:resource="&prov;influenced"/>
+            </rdf:Description>
+        </rdfs:subPropertyOf>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#wasInfluencedBy -->
+
+    <owl:ObjectProperty rdf:about="&prov;wasInfluencedBy">
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&prov;Activity"/>
+                    <rdf:Description rdf:about="&prov;Agent"/>
+                    <rdf:Description rdf:about="&prov;Entity"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&prov;Activity"/>
+                    <rdf:Description rdf:about="&prov;Agent"/>
+                    <rdf:Description rdf:about="&prov;Entity"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    <owl:Axiom>
+        <prov:definition>influencee: an identifier (o2) for an entity, activity, or agent; </prov:definition>
+        <prov:dm>http://www.w3.org/TR/2013/REC-prov-dm-20130430/#term-influence</prov:dm>
+        <owl:annotatedProperty rdf:resource="&rdfs;domain"/>
+        <owl:annotatedSource rdf:resource="&prov;wasInfluencedBy"/>
+        <owl:annotatedTarget>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&prov;Activity"/>
+                    <rdf:Description rdf:about="&prov;Agent"/>
+                    <rdf:Description rdf:about="&prov;Entity"/>
+                </owl:unionOf>
+            </owl:Class>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    <owl:Axiom>
+        <prov:definition>influencer: an identifier (o1) for an ancestor entity, activity, or agent that the former depends on;</prov:definition>
+        <prov:dm>http://www.w3.org/TR/2013/REC-prov-dm-20130430/#term-influence</prov:dm>
+        <owl:annotatedProperty rdf:resource="&rdfs;range"/>
+        <owl:annotatedSource rdf:resource="&prov;wasInfluencedBy"/>
+        <owl:annotatedTarget>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&prov;Activity"/>
+                    <rdf:Description rdf:about="&prov;Agent"/>
+                    <rdf:Description rdf:about="&prov;Entity"/>
+                </owl:unionOf>
+            </owl:Class>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#wasInformedBy -->
+
+    <owl:ObjectProperty rdf:about="&prov;wasInformedBy">
+        <rdfs:range rdf:resource="&prov;Activity"/>
+        <rdfs:domain rdf:resource="&prov;Activity"/>
+        <rdfs:subPropertyOf rdf:resource="&prov;wasInfluencedBy"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="&prov;qualifiedCommunication"/>
+            <rdf:Description rdf:about="&prov;activity"/>
+        </owl:propertyChainAxiom>
+        <rdfs:subPropertyOf>
+            <rdf:Description>
+                <owl:inverseOf rdf:resource="&prov;influenced"/>
+            </rdf:Description>
+        </rdfs:subPropertyOf>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#wasInvalidatedBy -->
+
+    <owl:ObjectProperty rdf:about="&prov;wasInvalidatedBy">
+        <rdf:type rdf:resource="&owl;AsymmetricProperty"/>
+        <rdf:type rdf:resource="&owl;IrreflexiveProperty"/>
+        <rdfs:range rdf:resource="&prov;Activity"/>
+        <rdfs:domain rdf:resource="&prov;Entity"/>
+        <rdfs:subPropertyOf rdf:resource="&prov;wasInfluencedBy"/>
+        <rdfs:subPropertyOf>
+            <rdf:Description>
+                <owl:inverseOf rdf:resource="&prov;influenced"/>
+            </rdf:Description>
+        </rdfs:subPropertyOf>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="&prov;qualifiedInvalidation"/>
+            <rdf:Description rdf:about="&prov;activity"/>
+        </owl:propertyChainAxiom>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#wasQuotedFrom -->
+
+    <owl:ObjectProperty rdf:about="&prov;wasQuotedFrom">
+        <rdfs:domain rdf:resource="&prov;Entity"/>
+        <rdfs:range rdf:resource="&prov;Entity"/>
+        <rdfs:subPropertyOf rdf:resource="&prov;wasDerivedFrom"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="&prov;qualifiedQuotation"/>
+            <rdf:Description rdf:about="&prov;entity"/>
+        </owl:propertyChainAxiom>
+    </owl:ObjectProperty>
+    <owl:Axiom>
+        <rdfs:comment>Quotation is a particular case of derivation (see http://www.w3.org/TR/prov-dm/#term-quotation) in which an entity is derived from an original entity by copying, or &quot;quoting&quot;, some or all of it. </rdfs:comment>
+        <owl:annotatedProperty rdf:resource="&rdfs;subPropertyOf"/>
+        <owl:annotatedTarget rdf:resource="&prov;wasDerivedFrom"/>
+        <owl:annotatedSource rdf:resource="&prov;wasQuotedFrom"/>
+    </owl:Axiom>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#wasRevisionOf -->
+
+    <owl:ObjectProperty rdf:about="&prov;wasRevisionOf">
+        <rdfs:range rdf:resource="&prov;Entity"/>
+        <rdfs:domain rdf:resource="&prov;Entity"/>
+        <rdfs:subPropertyOf rdf:resource="&prov;wasDerivedFrom"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="&prov;qualifiedRevision"/>
+            <rdf:Description rdf:about="&prov;entity"/>
+        </owl:propertyChainAxiom>
+    </owl:ObjectProperty>
+    <owl:Axiom>
+        <rdfs:comment>Revision is a derivation (see http://www.w3.org/TR/prov-dm/#term-Revision). Moreover, according to 
+http://www.w3.org/TR/2013/REC-prov-constraints-20130430/#term-Revision 23 April 2012 &apos;wasRevisionOf is a strict sub-relation of wasDerivedFrom since two entities e2 and e1 may satisfy wasDerivedFrom(e2,e1) without being a variant of each other.&apos;</rdfs:comment>
+        <owl:annotatedProperty rdf:resource="&rdfs;subPropertyOf"/>
+        <owl:annotatedTarget rdf:resource="&prov;wasDerivedFrom"/>
+        <owl:annotatedSource rdf:resource="&prov;wasRevisionOf"/>
+    </owl:Axiom>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#wasStartedBy -->
+
+    <owl:ObjectProperty rdf:about="&prov;wasStartedBy">
+        <rdf:type rdf:resource="&owl;AsymmetricProperty"/>
+        <rdf:type rdf:resource="&owl;IrreflexiveProperty"/>
+        <rdfs:domain rdf:resource="&prov;Activity"/>
+        <rdfs:range rdf:resource="&prov;Entity"/>
+        <rdfs:subPropertyOf rdf:resource="&prov;wasInfluencedBy"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="&prov;qualifiedStart"/>
+            <rdf:Description rdf:about="&prov;entity"/>
+        </owl:propertyChainAxiom>
+        <rdfs:subPropertyOf>
+            <rdf:Description>
+                <owl:inverseOf rdf:resource="&prov;influenced"/>
+            </rdf:Description>
+        </rdfs:subPropertyOf>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#topDataProperty -->
+
+    <rdf:Description rdf:about="&owl;topDataProperty"/>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#atTime -->
+
+    <owl:DatatypeProperty rdf:about="&prov;atTime">
+        <rdfs:range rdf:resource="&xsd;dateTime"/>
+        <rdfs:domain rdf:resource="&prov;InstantaneousEvent"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#endedAtTime -->
+
+    <owl:DatatypeProperty rdf:about="&prov;endedAtTime">
+        <rdfs:range rdf:resource="&xsd;dateTime"/>
+        <rdfs:domain rdf:resource="&prov;Activity"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#frequência -->
+
+    <owl:DatatypeProperty rdf:about="&prov;frequência">
+        <rdfs:range rdf:resource="&xsd;string"/>
+        <rdfs:domain rdf:resource="&prov;Activity"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#generatedAtTime -->
+
+    <owl:DatatypeProperty rdf:about="&prov;generatedAtTime">
+        <rdfs:range rdf:resource="&xsd;dateTime"/>
+        <rdfs:domain rdf:resource="&prov;Entity"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#gravidade -->
+
+    <owl:DatatypeProperty rdf:about="&prov;gravidade">
+        <rdfs:range rdf:resource="&xsd;string"/>
+        <rdfs:subPropertyOf rdf:resource="&owl;topDataProperty"/>
+        <rdfs:domain rdf:resource="&prov;Activity"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#invalidatedAtTime -->
+
+    <owl:DatatypeProperty rdf:about="&prov;invalidatedAtTime">
+        <rdfs:range rdf:resource="&xsd;dateTime"/>
+        <rdfs:domain rdf:resource="&prov;Entity"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#numero -->
+
+    <owl:DatatypeProperty rdf:about="&prov;numero">
+        <rdfs:range rdf:resource="&xsd;integer"/>
+        <rdfs:domain rdf:resource="&prov;Activity"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#prioridade -->
+
+    <owl:DatatypeProperty rdf:about="&prov;prioridade">
+        <rdfs:range rdf:resource="&xsd;string"/>
+        <rdfs:domain rdf:resource="&prov;Activity"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#processInstanceId -->
+
+    <owl:DatatypeProperty rdf:about="&prov;processInstanceId">
+        <rdfs:range rdf:resource="&xsd;integer"/>
+        <rdfs:domain rdf:resource="&prov;Activity"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#resumo -->
+
+    <owl:DatatypeProperty rdf:about="&prov;resumo">
+        <rdfs:range rdf:resource="&xsd;string"/>
+        <rdfs:domain rdf:resource="&prov;Activity"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#startedAtTime -->
+
+    <owl:DatatypeProperty rdf:about="&prov;startedAtTime">
+        <rdfs:range rdf:resource="&xsd;dateTime"/>
+        <rdfs:domain rdf:resource="&prov;Activity"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#tipo -->
+
+    <owl:DatatypeProperty rdf:about="&prov;tipo">
+        <rdfs:range rdf:resource="&xsd;string"/>
+        <rdfs:subPropertyOf rdf:resource="&owl;topDataProperty"/>
+        <rdfs:domain rdf:resource="&prov;Activity"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#value -->
+
+    <owl:DatatypeProperty rdf:about="&prov;value">
+        <rdfs:domain rdf:resource="&prov;Entity"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.w3.org/ns/prov#Activity -->
+
+    <owl:Class rdf:about="&prov;Activity">
+        <owl:disjointWith rdf:resource="&prov;Bundle"/>
+        <owl:disjointWith rdf:resource="&prov;Collection"/>
+        <owl:disjointWith rdf:resource="&prov;EmptyCollection"/>
+        <owl:disjointWith rdf:resource="&prov;Entity"/>
+        <owl:disjointWith rdf:resource="&prov;Plan"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#ActivityInfluence -->
+
+    <owl:Class rdf:about="&prov;ActivityInfluence">
+        <rdfs:subClassOf rdf:resource="&prov;Influence"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&prov;hadActivity"/>
+                <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:maxCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="&prov;Derivation"/>
+        <owl:disjointWith rdf:resource="&prov;End"/>
+        <owl:disjointWith rdf:resource="&prov;EntityInfluence"/>
+        <owl:disjointWith rdf:resource="&prov;PrimarySource"/>
+        <owl:disjointWith rdf:resource="&prov;Quotation"/>
+        <owl:disjointWith rdf:resource="&prov;Revision"/>
+        <owl:disjointWith rdf:resource="&prov;Start"/>
+        <owl:disjointWith rdf:resource="&prov;Usage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#Agent -->
+
+    <owl:Class rdf:about="&prov;Agent">
+        <owl:disjointWith rdf:resource="&prov;End"/>
+        <owl:disjointWith rdf:resource="&prov;Generation"/>
+        <owl:disjointWith rdf:resource="&prov;InstantaneousEvent"/>
+        <owl:disjointWith rdf:resource="&prov;Invalidation"/>
+        <owl:disjointWith rdf:resource="&prov;Start"/>
+        <owl:disjointWith rdf:resource="&prov;Usage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#AgentInfluence -->
+
+    <owl:Class rdf:about="&prov;AgentInfluence">
+        <rdfs:subClassOf rdf:resource="&prov;Influence"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#Association -->
+
+    <owl:Class rdf:about="&prov;Association">
+        <rdfs:subClassOf rdf:resource="&prov;AgentInfluence"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#Attribution -->
+
+    <owl:Class rdf:about="&prov;Attribution">
+        <rdfs:subClassOf rdf:resource="&prov;AgentInfluence"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#Bundle -->
+
+    <owl:Class rdf:about="&prov;Bundle">
+        <rdfs:subClassOf rdf:resource="&prov;Entity"/>
+        <owl:disjointWith rdf:resource="&prov;End"/>
+        <owl:disjointWith rdf:resource="&prov;Generation"/>
+        <owl:disjointWith rdf:resource="&prov;InstantaneousEvent"/>
+        <owl:disjointWith rdf:resource="&prov;Invalidation"/>
+        <owl:disjointWith rdf:resource="&prov;Start"/>
+        <owl:disjointWith rdf:resource="&prov;Usage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#Collection -->
+
+    <owl:Class rdf:about="&prov;Collection">
+        <rdfs:subClassOf rdf:resource="&prov;Entity"/>
+        <owl:disjointWith rdf:resource="&prov;End"/>
+        <owl:disjointWith rdf:resource="&prov;Generation"/>
+        <owl:disjointWith rdf:resource="&prov;InstantaneousEvent"/>
+        <owl:disjointWith rdf:resource="&prov;Invalidation"/>
+        <owl:disjointWith rdf:resource="&prov;Start"/>
+        <owl:disjointWith rdf:resource="&prov;Usage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#Communication -->
+
+    <owl:Class rdf:about="&prov;Communication">
+        <rdfs:subClassOf rdf:resource="&prov;ActivityInfluence"/>
+        <owl:disjointWith rdf:resource="&prov;Derivation"/>
+        <owl:disjointWith rdf:resource="&prov;End"/>
+        <owl:disjointWith rdf:resource="&prov;EntityInfluence"/>
+        <owl:disjointWith rdf:resource="&prov;PrimarySource"/>
+        <owl:disjointWith rdf:resource="&prov;Quotation"/>
+        <owl:disjointWith rdf:resource="&prov;Revision"/>
+        <owl:disjointWith rdf:resource="&prov;Start"/>
+        <owl:disjointWith rdf:resource="&prov;Usage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#Delegation -->
+
+    <owl:Class rdf:about="&prov;Delegation">
+        <rdfs:subClassOf rdf:resource="&prov;AgentInfluence"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#Derivation -->
+
+    <owl:Class rdf:about="&prov;Derivation">
+        <rdfs:subClassOf rdf:resource="&prov;EntityInfluence"/>
+        <owl:disjointWith rdf:resource="&prov;Generation"/>
+        <owl:disjointWith rdf:resource="&prov;Invalidation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#EmptyCollection -->
+
+    <owl:Class rdf:about="&prov;EmptyCollection">
+        <rdfs:subClassOf rdf:resource="&prov;Collection"/>
+        <owl:disjointWith rdf:resource="&prov;End"/>
+        <owl:disjointWith rdf:resource="&prov;Generation"/>
+        <owl:disjointWith rdf:resource="&prov;InstantaneousEvent"/>
+        <owl:disjointWith rdf:resource="&prov;Invalidation"/>
+        <owl:disjointWith rdf:resource="&prov;Start"/>
+        <owl:disjointWith rdf:resource="&prov;Usage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#End -->
+
+    <owl:Class rdf:about="&prov;End">
+        <rdfs:subClassOf rdf:resource="&prov;EntityInfluence"/>
+        <rdfs:subClassOf rdf:resource="&prov;InstantaneousEvent"/>
+        <owl:disjointWith rdf:resource="&prov;Entity"/>
+        <owl:disjointWith rdf:resource="&prov;Generation"/>
+        <owl:disjointWith rdf:resource="&prov;Invalidation"/>
+        <owl:disjointWith rdf:resource="&prov;Organization"/>
+        <owl:disjointWith rdf:resource="&prov;Person"/>
+        <owl:disjointWith rdf:resource="&prov;Plan"/>
+        <owl:disjointWith rdf:resource="&prov;SoftwareAgent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#Entity -->
+
+    <owl:Class rdf:about="&prov;Entity">
+        <owl:disjointWith rdf:resource="&prov;Generation"/>
+        <owl:disjointWith rdf:resource="&prov;InstantaneousEvent"/>
+        <owl:disjointWith rdf:resource="&prov;Invalidation"/>
+        <owl:disjointWith rdf:resource="&prov;Start"/>
+        <owl:disjointWith rdf:resource="&prov;Usage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#EntityInfluence -->
+
+    <owl:Class rdf:about="&prov;EntityInfluence">
+        <rdfs:subClassOf rdf:resource="&prov;Influence"/>
+        <owl:disjointWith rdf:resource="&prov;Generation"/>
+        <owl:disjointWith rdf:resource="&prov;Invalidation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#Generation -->
+
+    <owl:Class rdf:about="&prov;Generation">
+        <rdfs:subClassOf rdf:resource="&prov;ActivityInfluence"/>
+        <rdfs:subClassOf rdf:resource="&prov;InstantaneousEvent"/>
+        <owl:disjointWith rdf:resource="&prov;Organization"/>
+        <owl:disjointWith rdf:resource="&prov;Person"/>
+        <owl:disjointWith rdf:resource="&prov;Plan"/>
+        <owl:disjointWith rdf:resource="&prov;PrimarySource"/>
+        <owl:disjointWith rdf:resource="&prov;Quotation"/>
+        <owl:disjointWith rdf:resource="&prov;Revision"/>
+        <owl:disjointWith rdf:resource="&prov;SoftwareAgent"/>
+        <owl:disjointWith rdf:resource="&prov;Start"/>
+        <owl:disjointWith rdf:resource="&prov;Usage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#Influence -->
+
+    <owl:Class rdf:about="&prov;Influence"/>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#InstantaneousEvent -->
+
+    <owl:Class rdf:about="&prov;InstantaneousEvent">
+        <owl:disjointWith rdf:resource="&prov;Organization"/>
+        <owl:disjointWith rdf:resource="&prov;Person"/>
+        <owl:disjointWith rdf:resource="&prov;Plan"/>
+        <owl:disjointWith rdf:resource="&prov;SoftwareAgent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#Invalidation -->
+
+    <owl:Class rdf:about="&prov;Invalidation">
+        <rdfs:subClassOf rdf:resource="&prov;ActivityInfluence"/>
+        <rdfs:subClassOf rdf:resource="&prov;InstantaneousEvent"/>
+        <owl:disjointWith rdf:resource="&prov;Organization"/>
+        <owl:disjointWith rdf:resource="&prov;Person"/>
+        <owl:disjointWith rdf:resource="&prov;Plan"/>
+        <owl:disjointWith rdf:resource="&prov;PrimarySource"/>
+        <owl:disjointWith rdf:resource="&prov;Quotation"/>
+        <owl:disjointWith rdf:resource="&prov;Revision"/>
+        <owl:disjointWith rdf:resource="&prov;SoftwareAgent"/>
+        <owl:disjointWith rdf:resource="&prov;Start"/>
+        <owl:disjointWith rdf:resource="&prov;Usage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#Location -->
+
+    <owl:Class rdf:about="&prov;Location"/>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#Organization -->
+
+    <owl:Class rdf:about="&prov;Organization">
+        <rdfs:subClassOf rdf:resource="&prov;Agent"/>
+        <owl:disjointWith rdf:resource="&prov;Start"/>
+        <owl:disjointWith rdf:resource="&prov;Usage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#Person -->
+
+    <owl:Class rdf:about="&prov;Person">
+        <rdfs:subClassOf rdf:resource="&prov;Agent"/>
+        <owl:disjointWith rdf:resource="&prov;Start"/>
+        <owl:disjointWith rdf:resource="&prov;Usage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#Plan -->
+
+    <owl:Class rdf:about="&prov;Plan">
+        <rdfs:subClassOf rdf:resource="&prov;Entity"/>
+        <owl:disjointWith rdf:resource="&prov;Start"/>
+        <owl:disjointWith rdf:resource="&prov;Usage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#PrimarySource -->
+
+    <owl:Class rdf:about="&prov;PrimarySource">
+        <rdfs:subClassOf rdf:resource="&prov;Derivation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#Quotation -->
+
+    <owl:Class rdf:about="&prov;Quotation">
+        <rdfs:subClassOf rdf:resource="&prov;Derivation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#Revision -->
+
+    <owl:Class rdf:about="&prov;Revision">
+        <rdfs:subClassOf rdf:resource="&prov;Derivation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#Role -->
+
+    <owl:Class rdf:about="&prov;Role"/>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#SoftwareAgent -->
+
+    <owl:Class rdf:about="&prov;SoftwareAgent">
+        <rdfs:subClassOf rdf:resource="&prov;Agent"/>
+        <owl:disjointWith rdf:resource="&prov;Start"/>
+        <owl:disjointWith rdf:resource="&prov;Usage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#Start -->
+
+    <owl:Class rdf:about="&prov;Start">
+        <rdfs:subClassOf rdf:resource="&prov;EntityInfluence"/>
+        <rdfs:subClassOf rdf:resource="&prov;InstantaneousEvent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#Usage -->
+
+    <owl:Class rdf:about="&prov;Usage">
+        <rdfs:subClassOf rdf:resource="&prov;EntityInfluence"/>
+        <rdfs:subClassOf rdf:resource="&prov;InstantaneousEvent"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.w3.org/ns/prov#Activity1 -->
+
+    <owl:NamedIndividual rdf:about="&prov;Activity1">
+        <rdf:type rdf:resource="&prov;Activity"/>
+        <prov:wasInfluencedBy rdf:resource="&prov;Agent1"/>
+        <prov:wasAssociatedWith rdf:resource="&prov;Agent1"/>
+        <prov:wasInfluencedBy rdf:resource="&prov;Entity1"/>
+        <prov:used rdf:resource="&prov;Entity1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#Agent1 -->
+
+    <owl:NamedIndividual rdf:about="&prov;Agent1">
+        <rdf:type rdf:resource="&prov;Agent"/>
+        <prov:influenced rdf:resource="&prov;Activity1"/>
+        <prov:influenced rdf:resource="&prov;Entity1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#Agent2 -->
+
+    <owl:NamedIndividual rdf:about="&prov;Agent2">
+        <rdf:type rdf:resource="&prov;Agent"/>
+        <prov:influenced rdf:resource="&prov;Entity2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#Entity1 -->
+
+    <owl:NamedIndividual rdf:about="&prov;Entity1">
+        <rdf:type rdf:resource="&prov;Entity"/>
+        <prov:influenced rdf:resource="&prov;Activity1"/>
+        <prov:wasInfluencedBy rdf:resource="&prov;Agent1"/>
+        <prov:wasAttributedTo rdf:resource="&prov;Agent1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#Entity2 -->
+
+    <owl:NamedIndividual rdf:about="&prov;Entity2">
+        <rdf:type rdf:resource="&prov;Entity"/>
+        <prov:wasAttributedTo rdf:resource="&prov;Agent2"/>
+        <prov:wasInfluencedBy rdf:resource="&prov;Agent2"/>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.5.1) http://owlapi.sourceforge.net -->
+

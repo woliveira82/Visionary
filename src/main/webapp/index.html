@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+    <meta charset="UTF-8">
+    <title>Provenance Ontology</title>
+
+    <link href="css/jquery-ui.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/jquery.dataTables.min.css" rel="stylesheet">
+
+    <script src="js/jquery-2.1.4.min.js"></script> 
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/jquery-ui.custom-combobox.js"></script>
+    <script src="js/d3.js"></script>
+    <script src="js/jquery.dataTables.min.js"></script>
+    <script src="js/graphReduction.js"></script>
+    <script src="js/calculus.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/indexConfig.js"></script>
+
+
+    <div id="config">
+        <header>
+            <h1>Provenance Ontology</h1>
+            <div>
+                <div>
+                    Ontology: <span class="codeLike" id="owlPath"></span><br>
+                    Rendering Time: <span id="timeRendering">00:00</span>
+                </div>
+                <div id="visOptions">
+                    <input type="radio" id="sourceLayout" name="visOptions" value="sourceLayout"><label for="sourceLayout">Source Visualization</label>
+                    <input type="radio" id="chartsLayout" name="visOptions" value="chartsLayout"><label for="chartsLayout">Data Chart Visualization</label>
+                    <input type="radio" id="graphLayout" name="visOptions" value="graphLayout" checked><label for="graphLayout">Graph Visualization</label>
+                </div>
+        </header>
+        <div id="sourceVis">
+            <pre id="source" class="codeLike">
+            Source Code Visualization<br>
+            </pre>
+        </div>
+        <div id="chartVis">
+            Data Chart Visualization<br>
+            <h4>Local</h4>
+            <table id="nodeTable" class="display" cellspacing="0">
+                <tbody>
+                    <tr>
+                        <th>Type</th><th>Number of Nodes</th>
+                    </tr>
+                    <tr>
+                        <td>Agent</td><td id="agentAmaunt"></td>
+                    </tr>
+                    <tr>
+                        <td>Activity</td><td id="activityAmaunt"></td>
+                    </tr>
+                    <tr>
+                        <td>Entity</td><td id="entityAmaunt"></td>
+                    </tr>
+                    <tr>
+                        <td>Total</td><td id="totalAmaunt"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <table id="metricTable" class="display" cellspacing="0" width="100%">
+            </table>
+        </div>
+        <div id="graphVis">
+            <main>
+                <div id="graph">
+                </div>
+            </main>
+            <aside>
+                <form>
+                    <h2 class="demoHeaders">Display Options</h2>
+                    <div class="filters">
+                        <span>Symbols</span>
+                        <table class="largeTable">
+                            <tbody>
+                                <tr>
+                                    <td class="right"><img id="actorImage" src="images/prov.png" alt="Agent" width="24"></td>
+                                    <td>
+                                        <div id="radioset">
+                                            <input type="radio" id="prov" name="icon" value="prov" checked><label for="prov">PROV</label>
+                                            <input type="radio" id="bpmn" name="icon" value="bpmn"><label for="bpmn">BPMN</label>
+                                        </div>
+                                    </td>
+                                    <td class="left"><img id="actorImage" src="images/bpmn.png" alt="Agent" width="24"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <span>Node importance as size</span>
+                        <table class="largeTable">
+                            <tbody>
+                                <tr>
+                                    <td class="right"><img id="actorImage" src="images/sizeon.png" alt="Dif. sizes" width="24"></td>
+                                    <td>
+                                        <div id="radiosize">
+                                            <input type="radio" id="sizeOn" name="size" value="on"><label for="sizeOn">ON</label>
+                                            <input type="radio" id="sizeOff" name="size" value="off" checked><label for="sizeOff">OFF</label>
+                                        </div>
+                                    </td>
+                                    <td class="left"><img id="actorImage" src="images/sizeoff.png" alt="One size" width="24"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <span>Similarity of nodes</span>
+                        <table class="largeTable">
+                            <tbody>
+                                <tr>
+                                    <td class="right"><img id="actorImage" src="images/nodesimilarity.png" alt="Similarity (%)" width="48"></td>
+                                    <td>
+                                        <div id="radioSimilarity">
+                                            <input type="radio" id="simOn" name="similarity" value="on"><label for="simOn">ON</label>
+                                            <input type="radio" id="simOff" name="similarity" value="off" checked><label for="simOff">OFF</label>
+                                        </div>
+                                    </td>
+                                    <td class="left"><img id="actorImage" src="images/nodenames.png" alt="Names" width="48"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h2 class="demoHeaders">Filter Options</h2>
+                    <div class="filters">
+                        <span class="filterTitle">Filter Icons and Names</span>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td colspan="2"><div>All Names</div></td>
+                                    <td>
+                                        <div id="allFilter" class="fr">
+                                            <input type="checkbox" id="allIcons" value="allIcons" checked><label for="allIcons">Icons</label>
+                                            <input type="checkbox" id="allNames" value="allNames" checked><label for="allNames">Names</label>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><img id="actorImage" src="images/agent3.png" alt="Agent" width="24"></td>
+                                    <td><div id="actorNameLabel"><u>A</u>gents</div></td>
+                                    <td>
+                                        <div id="agentFilter" class="fr">
+                                            <input type="checkbox" id="agentIcon" value="agentIcon" checked><label for="agentIcon">Icons</label>
+                                            <input type="checkbox" id="agentName" value="agentName" checked><label for="agentName">Names</label>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><img id="taskImage" src="images/activity3.png" alt="Activity" width="24"></td>
+                                    <td><div id="taskNameLabel">Ac<u>t</u>ivities</div></td>
+                                    <td>
+                                        <div id="activityFilter">
+                                            <input type="checkbox" id="activityIcon" value="activityIcon" checked><label for="activityIcon">Icons</label>
+                                            <input type="checkbox" id="activityName" value="activityName" checked><label for="activityName">Names</label>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><img id="entityImage" src="images/entity3.png" alt="Entity" width="24"></td>
+                                    <td><div id="entityNameLabel"><u>E</u>ntities</div></td>
+                                    <td>
+                                        <div id="entityFilter">
+                                            <input type="checkbox" id="entityIcon" value="entityIcon" checked><label for="entityIcon">Icons</label>
+                                            <input type="checkbox" id="entityName" value="entityName" checked><label for="entityName">Names</label>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="filters">
+                        <input type="hidden" id="hideFilterNodeActive" value="false">
+                        <span class="filterTitle">Filter Nodes</span>
+                        <div class="ui-widget">
+                            <label for="nodeA">Select a node:</label>
+                            <br>
+                            <select name="nodeA" id="nodeA">
+                                <option value="">Select a node...</option>
+                            </select>
+                        </div>
+                        <div class="ui-widget">
+                            <label for="nodeB">Select a node:</label>
+                            <br>
+                            <select name="nodeB" id="nodeB">
+                                <option value="">Select a node...</option>
+                            </select>
+                        </div>
+                        <br>
+                        <button id="filterNodes">Filter</button><button id="showAll">Show all</button>
+                    </div>
+                </form>
+            </aside>
+        </div>
+    </div>
+    <div id="nodeTip">
+        <table class="tableTip">
+            <tbody id="tipNodeName">
+                <tr><th>Name</th><th>Type</th><th>Specific Type</th></tr>
+                <tr id="tipNodeName"></tr>
+            </tbody>
+        </table>
+        <table class="tableTip">
+            <tbody id="tipNodeLinks">
+            </tbody>
+        </table>
+    </div>
+    <div id="pathTip">
+        <table class="tableTip">
+            <tbody>
+                <tr><th>Source</th><th>Target</th></tr>
+                <tr>
+                    <td><span id="tipSourceName"></span></td>
+                    <td><span id="tipTargetName"></span></td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="tableTip">
+            <tbody id="tipLinkType">
+            </tbody>
+        </table>
+    </div>
+</html>
